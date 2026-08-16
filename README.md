@@ -17,6 +17,7 @@ Most AI-assisted coding collapses after 2–3 weeks: agents make blind edits, co
 
 ### 1. 🔄 Full SDLC Pipeline (Operational Commands)
 * 🚀 **`/bootstrap`** — Autonomously scans any codebase (Monolith, Monorepo, Microservices) and generates tailored `AGENTS.md`, `CONTEXT.md`, and initial ADR baseline.
+* 🗺️ **`/repo-map`** — Dynamically generates an AST-like map of the codebase, routing domain entities and module exports without loading full files.
 * ❓ **`/grill <feature>`** — Interrogates requirements across a structured decision tree before touching code.
 * 📝 **`/spec <feature>`** — Synthesizes architectural RFCs with Deep Module boundaries and non-goals.
 * 🎯 **`/tickets`** — Slices features into **Tracer-Bullet vertical slices** with explicit dependency blocking edges.
@@ -24,9 +25,12 @@ Most AI-assisted coding collapses after 2–3 weeks: agents make blind edits, co
 * ♻️ **`/refactor`** — Safe structural refactoring without behavior changes, backed by Fowler smells and Ousterhout principles.
 * 🔍 **`/diagnose <bug>`** — Industrial-grade 5-phase debugging loop (Red test reproduction, secret redaction, hypothesis verification).
 * ⚖️ **`/review`** — Two-Axis Code Review (Standards & 12 Martin Fowler Smells + Spec Fidelity).
+* 🛡️ **`/audit`** — DevSecOps scanner for OWASP Top 10 vulnerabilities, hardcoded secrets, and dependency audits.
 * 📦 **`/commit`** — Atomic, pre-verified Conventional Commits with 50/72 formatting and diff grounding.
 * 🚢 **`/pr`** — Production-ready GitHub Pull Request descriptions.
-* 🗺️ **`/repo-map`** — Dynamically generates an AST-like map of the codebase, routing domain entities and module exports without loading full files.
+* 🚀 **`/release`** — Automated SemVer calculation, CHANGELOG generation, and release tagging.
+* 📚 **`/docs`** — Generates TSDoc/JSDoc, OpenAPI schemas, and READMEs without altering business logic.
+* ⬆️ **`/bump <pkg>`** — Safely upgrades dependencies, detects API breaking changes via typecheck, and fixes call sites.
 * 🛑 **`/wait-what`** — Emergency reset requiring the agent to re-pitch explanations in unambiguous domain terms.
 
 ### 2. 🧠 Engineering Disciplines (Skills)
@@ -71,22 +75,12 @@ The agent will analyze the repository topology (Monolith, Monorepo workspaces, o
 
 ## 🔁 The Standard SDLC Workflow
 
-```
- ┌───────────────┐      ┌───────────────┐      ┌───────────────┐
- │ 1. /bootstrap │ ───► │   2. /grill   │ ───► │    3. /spec   │
- └───────────────┘      └───────────────┘      └───────────────┘
-                                                       │
-                                                       ▼
- ┌───────────────┐      ┌───────────────┐      ┌───────────────┐
- │     7. /pr    │ ◄─── │   6. /commit  │ ◄─── │   5. /review  │
- └───────────────┘      └───────────────┘      └───────────────┘
-                                                       ▲
-                                                       │
-                                              ┌─────────────────┐
-                                              │  4. /implement  │
-                                              │  (TDD loop)     │
-                                              └─────────────────┘
-```
+1. 🔍 **Discover:** `/bootstrap` ➔ `/repo-map`
+2. 📐 **Design:** `/grill` ➔ `/spec` ➔ `/tickets`
+3. 🏗️ **Build:** `/implement` ↺ `/refactor` ↺ `/diagnose`
+4. 🧪 **Verify:** `/review` & `/audit`
+5. 🚢 **Ship:** `/commit` ➔ `/pr` ➔ `/release`
+6. ♻️ **Maintain:** `/docs` & `/bump`
 
 ---
 
