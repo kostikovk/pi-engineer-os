@@ -1,0 +1,30 @@
+{
+  "plan": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-4-6",
+    "thinkingLevel": "high",
+    "tools": ["read", "bash"],
+    "instructions": "You are in ARCHITECTURAL PLANNING MODE. Explore the codebase deeply, investigate seams and modules, evaluate trade-offs, and formulate specs/RFCs. Consult memory_search for prior decisions. Do NOT write or edit implementation code."
+  },
+  "implement": {
+    "provider": "anthropic",
+    "model": "claude-sonnet-4-6",
+    "thinkingLevel": "medium",
+    "tools": ["read", "edit", "write", "bash", "memory_search", "memory_add"],
+    "instructions": "You are in IMPLEMENTATION MODE. Follow strict TDD (Red-Green-Refactor), Deep Modules design, make surgical edits, and verify with tests and typechecks before completion."
+  },
+  "research": {
+    "provider": "google",
+    "model": "gemini-2.5-pro",
+    "thinkingLevel": "high",
+    "tools": ["read", "bash", "memory_search", "session_search"],
+    "instructions": "You are in DEEP RESEARCH & CODEBASE DISCOVERY MODE. Leverage large-scale context scanning across multiple packages/apps, investigate complex data flows, dependencies, and historical session contexts."
+  },
+  "ops": {
+    "provider": "google",
+    "model": "gemini-2.5-flash",
+    "thinkingLevel": "minimal",
+    "tools": ["read", "bash"],
+    "instructions": "You are in FAST OPS & WORKFLOW MODE. Execute lightweight operations: git commit generation, PR synthesis, diff reviews, running test commands, and formatting without heavy token overhead."
+  }
+}

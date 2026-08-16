@@ -1,0 +1,12 @@
+# Node & OS
+node_modules/
+.DS_Store
+*.log
+.scratch/
+
+# Local env & temp
+.env.local
+.env.*.local
+tmp/
+dist/
+build/

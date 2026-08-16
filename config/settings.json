@@ -1,0 +1,7 @@
+{
+  "compaction": {
+    "reserveTokens": 24576,
+    "keepRecentTokens": 12000
+  },
+  "defaultThinkingLevel": "medium"
+}
