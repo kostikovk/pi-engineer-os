@@ -21,10 +21,12 @@ Most AI-assisted coding collapses after 2–3 weeks: agents make blind edits, co
 * 📝 **`/spec <feature>`** — Synthesizes architectural RFCs with Deep Module boundaries and non-goals.
 * 🎯 **`/tickets`** — Slices features into **Tracer-Bullet vertical slices** with explicit dependency blocking edges.
 * 🛠️ **`/implement`** — Orchestrates execution with strict TDD (Red-Green-Refactor), continuous typechecking, and self-reviews.
+* ♻️ **`/refactor`** — Safe structural refactoring without behavior changes, backed by Fowler smells and Ousterhout principles.
 * 🔍 **`/diagnose <bug>`** — Industrial-grade 5-phase debugging loop (Red test reproduction, secret redaction, hypothesis verification).
 * ⚖️ **`/review`** — Two-Axis Code Review (Standards & 12 Martin Fowler Smells + Spec Fidelity).
 * 📦 **`/commit`** — Atomic, pre-verified Conventional Commits with 50/72 formatting and diff grounding.
 * 🚢 **`/pr`** — Production-ready GitHub Pull Request descriptions.
+* 🗺️ **`/repo-map`** — Dynamically generates an AST-like map of the codebase, routing domain entities and module exports without loading full files.
 * 🛑 **`/wait-what`** — Emergency reset requiring the agent to re-pitch explanations in unambiguous domain terms.
 
 ### 2. 🧠 Engineering Disciplines (Skills)
