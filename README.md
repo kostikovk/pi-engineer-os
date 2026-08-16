@@ -38,7 +38,7 @@ Most AI-assisted coding collapses after 2–3 weeks: agents make blind edits, co
 ### 3. 🛡️ Lean Context & Safety Extensions
 * **`custom-compaction.ts`** — Replaces dumb compaction with architecture-preserving state summaries.
 * **`trigger-compact.ts`** — Proactive context window management preventing context rot.
-* **`protected-paths.ts`** — Blocks accidental mutations of `.env*`, `.git/`, and critical configs.
+* **`safety-guardrails.ts`** — Blocks accidental mutations of `.env*`, `.git/`, and intercepts destructive git commands (`push --force`, `reset --hard`).
 * **`git-checkpoint.ts`** — Automatic git checkpoints before major refactors.
 * **`todo.ts`** — Real-time interactive TUI task manager.
 * **`skills-list.ts`** — Interactive `/skills` browser.

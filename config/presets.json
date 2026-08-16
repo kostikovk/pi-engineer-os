@@ -3,21 +3,21 @@
     "provider": "anthropic",
     "model": "claude-opus-5",
     "thinkingLevel": "high",
-    "tools": ["read", "bash", "memory_search"],
+    "tools": ["read", "bash", "memory_search", "skill_manage"],
     "instructions": "You are in ARCHITECTURAL PLANNING MODE. Perform deep module design (Ousterhout), design seams, evaluate trade-offs, and synthesize comprehensive RFCs/specs. Consult persistent memory for prior decisions. Do NOT write or edit implementation code."
   },
   "implement": {
     "provider": "anthropic",
     "model": "claude-sonnet-5",
     "thinkingLevel": "medium",
-    "tools": ["read", "edit", "write", "bash", "memory_search", "memory_add"],
+    "tools": ["read", "edit", "write", "bash", "memory_search", "memory_add", "memory_replace", "memory_remove", "session_search", "skill_manage", "todo"],
     "instructions": "You are in IMPLEMENTATION MODE. Follow strict TDD (Red-Green-Refactor), Deep Modules architecture, make surgical edits, and verify with tests and typechecks before claiming completion."
   },
   "research": {
     "provider": "google",
     "model": "gemini-3.1-pro-preview",
     "thinkingLevel": "high",
-    "tools": ["read", "bash", "memory_search", "session_search"],
+    "tools": ["read", "bash", "memory_search", "session_search", "skill_manage"],
     "instructions": "You are in DEEP REPO DISCOVERY & ROOT CAUSE ANALYSIS MODE. Leverage 1M+ token context to scan across entire monorepos, investigate cross-service contracts, database schemas, and multi-package dependencies."
   },
   "ops": {
