@@ -16,3 +16,33 @@ This repository adheres to standard clean code guidelines and actively eliminate
 10. **Message Chains**: `a.getB().getC().getD().doSomething()` leaky chains. -> *Hide delegate behind a single method.*
 11. **Middle Man**: A function/class that only forwards calls to another class. -> *Remove wrapper.*
 12. **Refused Bequest**: A subclass or implementation that overrides or throws on parent behavior. -> *Favor composition over inheritance.*
+
+---
+
+## Git Commit Standard (Conventional Commits 1.0.0)
+
+All commits in this repository must be **atomic**, **verified** (typecheck/tests pass), and formatted according to **Conventional Commits**:
+
+```text
+<type>(<scope>): <imperative subject>
+
+[optional body explaining WHY and architectural trade-offs]
+
+[optional footer(s) / BREAKING CHANGE]
+```
+
+### Commit Types:
+- `feat`: New user or API capability (SemVer Minor)
+- `fix`: Bug fix (SemVer Patch)
+- `refactor`: Structural improvement without changing behavior
+- `perf`: Performance optimization
+- `test`: Test suite additions or corrections
+- `docs`: Documentation, README, or ADR updates
+- `chore`: Build tools, dependencies, or linters
+- `ci`: CI/CD pipeline changes
+
+### Rules:
+- **Imperative mood**: "add", "fix", "refactor" (never "added", "fixes").
+- **Header limit**: <= 50-72 chars, lowercase, no trailing dot.
+- **Atomic slicing**: 1 logical change per commit. Never mix refactoring with feature delivery.
+

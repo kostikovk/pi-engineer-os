@@ -51,9 +51,10 @@ if [ "$TARGET_MODE" = "--global" ]; then
   cp -r "$SCRIPT_DIR"/extensions/* "$HOME/.pi/agent/extensions/"
   
   # 3. Install Skills
-  mkdir -p "$HOME/.agents/skills"
+  mkdir -p "$HOME/.pi/agent/skills" "$HOME/.agents/skills"
   for skill in "$SCRIPT_DIR"/skills/*; do
     if [ -d "$skill" ]; then
+      cp -r "$skill" "$HOME/.pi/agent/skills/"
       cp -r "$skill" "$HOME/.agents/skills/"
     fi
   done

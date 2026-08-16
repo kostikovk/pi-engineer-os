@@ -23,6 +23,7 @@ Most AI-assisted coding collapses after 2–3 weeks: agents make blind edits, co
 * 🛠️ **`/implement`** — Orchestrates execution with strict TDD (Red-Green-Refactor), continuous typechecking, and self-reviews.
 * 🔍 **`/diagnose <bug>`** — Industrial-grade 5-phase debugging loop (Red test reproduction, secret redaction, hypothesis verification).
 * ⚖️ **`/review`** — Two-Axis Code Review (Standards & 12 Martin Fowler Smells + Spec Fidelity).
+* 📦 **`/commit`** — Atomic, pre-verified Conventional Commits with 50/72 formatting and diff grounding.
 * 🚢 **`/pr`** — Production-ready GitHub Pull Request descriptions.
 * 🛑 **`/wait-what`** — Emergency reset requiring the agent to re-pitch explanations in unambiguous domain terms.
 
@@ -32,6 +33,7 @@ Most AI-assisted coding collapses after 2–3 weeks: agents make blind edits, co
 * **`tdd`** — Red-Green-Refactor loop with disciplined mocking boundaries.
 * **`diagnosing-bugs`** — Prohibition of blind hypotheses without a red-capable feedback loop.
 * **`code-review`** — Two-axis diff analysis with Fowler smells baseline.
+* **`git-commit-discipline`** — Atomic Conventional Commits, 50/72 rule, type/scope resolution, and diff grounding.
 
 ### 3. 🛡️ Lean Context & Safety Extensions
 * **`custom-compaction.ts`** — Replaces dumb compaction with architecture-preserving state summaries.
@@ -74,12 +76,12 @@ The agent will analyze the repository topology (Monolith, Monorepo workspaces, o
                                                        │
                                                        ▼
  ┌───────────────┐      ┌───────────────┐      ┌───────────────┐
- │     6. /pr    │ ◄─── │   5. /review  │ ◄─── │  4. /tickets  │
+ │     7. /pr    │ ◄─── │   6. /commit  │ ◄─── │   5. /review  │
  └───────────────┘      └───────────────┘      └───────────────┘
                                                        ▲
                                                        │
                                               ┌─────────────────┐
-                                              │  /implement     │
+                                              │  4. /implement  │
                                               │  (TDD loop)     │
                                               └─────────────────┘
 ```
