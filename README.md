@@ -32,6 +32,9 @@ pi-engineer-os/
 ├── 🛡️ extensions/              # Context preservation, safety gates, and live docs
 │   ├── github-issue-autocomplete.ts # Fast fuzzy `#issue` autocompletion in prompt input
 │   ├── safety-gate.ts          # Protection against rm -rf, git force push, and DROP DB
+│   ├── git-merge-and-resolve.ts # AI conflict resolver & `/resolve-conflicts` command
+│   ├── inline-bash.ts          # Inline `!{command}` and `@{file}` prompt expansion
+│   ├── token-gauge.ts          # Real-time token saturation & context meter in status bar
 │   ├── context7-docs.ts        # Real-time version-accurate docs (/docs & context7_docs tool)
 │   ├── custom-compaction.ts    # Architecture-preserving context compaction
 │   ├── trigger-compact.ts      # Proactive context window management
@@ -62,6 +65,7 @@ pi-engineer-os/
 | **`/implement`** | When executing a ticket or feature | Executes strict **TDD (Red-Green-Refactor)**, verifies types, and checks `context7_docs` | Clean, tested production code |
 | **`/diagnose <bug>`** | When encountering bugs or regressions | Enforces a 5-phase root cause analysis: reproduces via failing test before modifying code | Verified fix with regression test |
 | **`/review`** | Before merging or creating a PR | Performs a dual-axis audit: 12 Fowler code smells + spec fidelity check | Structured blocker list & verdict |
+| **`/resolve-conflicts`** | When Git merge conflicts occur (`<<<<<<<`) | Parses unmerged paths, analyzes conflicting branches, and generates clean semantic resolution | Cleanly resolved merge conflicts |
 | **`/docs <lib> <q>`** | When using external frameworks & libraries | Fetches clean, version-accurate documentation via Context7 API | Up-to-date syntax without hallucinations |
 | **`/pr`** | When a ticket or feature is completed | Generates a standardized Pull Request summary with test proofs and checklists | Ready-to-merge PR description |
 | **`/wait-what`** | If an explanation is too abstract or convoluted | Forces the agent to re-explain the last decision in plain terms referencing `CONTEXT.md` | Clear, jargon-free explanation |
