@@ -2,8 +2,10 @@
 description: Perform a two-axis code review on git changes (Standards/Fowler Smells + Spec Fidelity)
 argument-hint: "[fixed-point-or-branch]"
 ---
-Perform a thorough **Two-Axis Code Review** of changes since ${1:-"origin/main or merge-base"}.
-Inspect `git diff ${1:-"origin/main...HEAD"}` and `git log ${1:-"origin/main..HEAD"} --oneline`.
+1. **Detect Base Branch**: Determine the base branch or commit (if not specified as `$1`, detect automatically via `git symbolic-ref refs/remotes/origin/HEAD`, `origin/main`, `origin/master`, `origin/develop`, `production`, or merge-base).
+2. **Inspect Changes**: Run `git diff <base-branch>...HEAD` and `git log <base-branch>..HEAD --oneline`.
+
+Perform a thorough **Two-Axis Code Review** of changes since the base branch.
 
 Evaluate against two distinct axes:
 

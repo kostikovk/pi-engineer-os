@@ -19,6 +19,7 @@ Examine the repository filesystem and configuration files to determine:
    - Database / ORM (Prisma, Drizzle, TypeORM, raw SQL, Mongo).
    - Test framework (Vitest, Jest, Playwright, Pytest, Go test).
    - Typechecking & linting commands (e.g. `tsc --noEmit`, `biome check`, `eslint`).
+   - Git workflow & Default Branch: Detect default branch (`main`, `master`, `develop`, `production`, etc.) via `git symbolic-ref refs/remotes/origin/HEAD` or `git branch --show-current`.
 
 ### Step 2: Generate Tailored `AGENTS.md`
 Generate or update `AGENTS.md` in the project root containing:

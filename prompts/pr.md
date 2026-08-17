@@ -2,8 +2,8 @@
 description: Generate a standardized Pull Request description from git diff and commit history
 argument-hint: "[target-branch-or-issue]"
 ---
-Analyze commits and diff against target branch ${1:-"origin/main"}:
-`git log ${1:-"origin/main"}..HEAD --oneline` and `git diff ${1:-"origin/main"}...HEAD --stat`.
+1. **Detect Base Branch**: Determine the target base branch (if not specified as `$1`, detect automatically via `git symbolic-ref refs/remotes/origin/HEAD`, `origin/main`, `origin/master`, `origin/develop`, `production`, or current parent branch).
+2. **Analyze Diff**: Run `git log <base-branch>..HEAD --oneline` and `git diff <base-branch>...HEAD --stat`.
 
 Generate a production-ready Pull Request summary in Markdown:
 
