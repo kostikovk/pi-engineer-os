@@ -3,6 +3,7 @@ node_modules/
 .DS_Store
 *.log
 .scratch/
+.omc/
 
 # Local env & temp
 .env.local
