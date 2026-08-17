@@ -16,3 +16,7 @@ Present the numbered list of tickets for user approval:
 - **Blocked By**: <Ticket numbers or None>
 - **Delivers**: <End-to-end verified behavior>
 - **Verification**: <How to test>
+
+### Storage & Persistence:
+1. **Repository-level (Git-tracked)**: Write the approved tickets to `docs/tickets.md` (or individual markdown files under `docs/tickets/` if large) so they are version-controlled, durable, and shareable across the team.
+2. **Session-level (Interactive TUI)**: Populate the active tasks into the `todo` tool (`todo add ...`) so they are visible and trackable in the interactive Pi TUI.
