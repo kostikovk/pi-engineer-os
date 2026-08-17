@@ -30,6 +30,8 @@ pi-engineer-os/
 │   └── code-review/            # Dual-axis audit (12 Fowler Smells + Spec Fidelity)
 ├── ⚡ prompts/                 # Standard SDLC workflows (/bootstrap, /grill, /spec, etc.)
 ├── 🛡️ extensions/              # Context preservation, safety gates, and live docs
+│   ├── github-issue-autocomplete.ts # Fast fuzzy `#issue` autocompletion in prompt input
+│   ├── safety-gate.ts          # Protection against rm -rf, git force push, and DROP DB
 │   ├── context7-docs.ts        # Real-time version-accurate docs (/docs & context7_docs tool)
 │   ├── custom-compaction.ts    # Architecture-preserving context compaction
 │   ├── trigger-compact.ts      # Proactive context window management
