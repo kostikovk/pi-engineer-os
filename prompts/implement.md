@@ -6,7 +6,7 @@ You are in **IMPLEMENTATION MODE**. Implement the work for: "$1".
 Details: ${@:2:-"Follow spec"}
 
 ### Execution Protocol:
-1. **Pre-read & Understand**: Read all referenced files in full before editing.
+1. **Pre-read & Understand**: Read all referenced files in full before editing. If using modern frameworks (Next.js, Prisma, Tailwind, etc.), verify current API signatures using `context7_docs` or local `node_modules` types.
 2. **TDD (Red-Green-Refactor)**:
    - Write a failing test first that exercises the target interface seam.
    - Run the test to watch it fail (Red).

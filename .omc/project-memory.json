@@ -1,0 +1,99 @@
+{
+  "version": "1.0.0",
+  "lastScanned": 1786957200890,
+  "projectRoot": "/Users/koskosovu4/projects/pi-engineer-os",
+  "techStack": {
+    "languages": [],
+    "frameworks": [],
+    "packageManager": null,
+    "runtime": null
+  },
+  "build": {
+    "buildCommand": null,
+    "testCommand": null,
+    "lintCommand": null,
+    "devCommand": null,
+    "scripts": {}
+  },
+  "conventions": {
+    "namingStyle": null,
+    "importStyle": null,
+    "testPattern": null,
+    "fileOrganization": null
+  },
+  "structure": {
+    "isMonorepo": false,
+    "workspaces": [],
+    "mainDirectories": [
+      "docs"
+    ],
+    "gitBranches": null
+  },
+  "customNotes": [],
+  "directoryMap": {
+    "config": {
+      "path": "config",
+      "purpose": "Configuration files",
+      "fileCount": 2,
+      "lastAccessed": 1786957200875,
+      "keyFiles": [
+        "presets.json",
+        "settings.json"
+      ]
+    },
+    "docs": {
+      "path": "docs",
+      "purpose": "Documentation",
+      "fileCount": 0,
+      "lastAccessed": 1786957200876,
+      "keyFiles": []
+    },
+    "extensions": {
+      "path": "extensions",
+      "purpose": null,
+      "fileCount": 6,
+      "lastAccessed": 1786957200877,
+      "keyFiles": [
+        "custom-compaction.ts",
+        "git-checkpoint.ts",
+        "safety-guardrails.ts",
+        "skills-list.ts",
+        "todo.ts"
+      ]
+    },
+    "prompts": {
+      "path": "prompts",
+      "purpose": null,
+      "fileCount": 16,
+      "lastAccessed": 1786957200878,
+      "keyFiles": [
+        "audit.md",
+        "bootstrap.md",
+        "bump.md",
+        "commit.md",
+        "diagnose.md"
+      ]
+    },
+    "skills": {
+      "path": "skills",
+      "purpose": null,
+      "fileCount": 0,
+      "lastAccessed": 1786957200879,
+      "keyFiles": []
+    },
+    "templates": {
+      "path": "templates",
+      "purpose": null,
+      "fileCount": 4,
+      "lastAccessed": 1786957200879,
+      "keyFiles": [
+        "ADR-template.md",
+        "AGENTS.template.md",
+        "CODING_STANDARDS.md",
+        "CONTEXT.template.md"
+      ]
+    }
+  },
+  "hotPaths": [],
+  "userDirectives": []
+}

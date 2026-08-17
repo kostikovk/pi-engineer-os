@@ -20,12 +20,16 @@ Welcome to the project. All AI agents working in this repository must strictly a
 - Keep edits localized. Do not reformat unrelated lines or change unrelated dependencies.
 - Sequence wide refactors using the **Expand-Contract** pattern.
 
-## 5. Verification & Pre-Flight Checks
+## 5. Modern Documentation & Zero Hallucinations
+- Before implementing code with external frameworks (Next.js, Prisma, React, Tailwind, Stripe, Supabase), use `context7_docs` or inspect local types in `node_modules/` to verify current method signatures.
+- Never guess or use deprecated APIs from past versions.
+
+## 6. Verification & Pre-Flight Checks
 Before claiming a task is complete, run the project's verification suite:
 - **Typecheck**: `{{TYPECHECK_COMMAND}}`
 - **Tests**: `{{TEST_COMMAND}}`
 - **Lint**: `{{LINT_COMMAND}}`
 
-## 6. Commit Standards
+## 7. Commit Standards
 - Use Conventional Commits (`feat:`, `fix:`, `refactor:`, `chore:`, `test:`).
 - One logical change per atomic commit.

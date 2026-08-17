@@ -47,6 +47,7 @@ Most AI-assisted coding collapses after 2–3 weeks: agents make blind edits, co
 * **`safety-guardrails.ts`** — Blocks accidental mutations of `.env*`, `.git/`, and intercepts destructive git commands (`push --force`, `reset --hard`).
 * **`git-checkpoint.ts`** — Automatic git checkpoints before major refactors.
 * **`todo.ts`** — Real-time interactive TUI task manager.
+* **`context7-docs.ts`** — Real-time documentation fetcher (`context7_docs` tool & `/docs` command) preventing framework hallucinations.
 * **`skills-list.ts`** — Interactive `/skills` browser.
 
 ---
