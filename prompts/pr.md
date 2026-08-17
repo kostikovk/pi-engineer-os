@@ -10,6 +10,11 @@ Generate a production-ready Pull Request summary in Markdown:
 ## 📌 Summary
 1-2 sentence high-level overview of what this PR introduces and why.
 
+## 🔗 Related Issues / External Trackers
+- `Closes #<id>` (for GitHub Issues)
+- `Resolves <KEY-123>` (for Jira / Linear / ClickUp)
+- Links to relevant spec in `docs/` or `CONTEXT.md`
+
 ## 🛠️ Key Changes
 - Grouped bullet points of changes (Database, Business Logic, API, UI, Tooling).
 - Mention any architectural decisions or deep modules introduced.

@@ -70,8 +70,10 @@ pi-engineer-os/
 
 1. **Persistent Cross-Session Memory (`pi-hermes-memory`):**
    * Durable architectural decisions, conventions, and bug insights persist across sessions via vector-indexed storage (`memory_add` / `memory_search`). Future sessions instantly build on past learnings.
-2. **Repository-Anchored State (`CONTEXT.md` + `docs/adr/`):**
-   * Establishes a shared Ubiquitous Language and formal Architecture Decision Records version-controlled alongside source code.
+2. **Repository-Anchored State (`CONTEXT.md`, `docs/tickets.md`, `docs/adr/`):**
+   * Establishes a shared Ubiquitous Language, formal Architecture Decision Records, and active task slices version-controlled alongside source code.
+   * **External Tracker Bridge**: Seamlessly bridges with Jira, Linear, GitHub Projects, and ClickUp via PR auto-closing tags (`Resolves PROJ-123`, `Closes #45`) and `gh` CLI inspection.
+   * **Active Task Buffer & Archiving**: Active tickets live in `docs/tickets.md` and are archived to `docs/archive/tickets-*.md` upon milestone completion, preventing context bloat.
 3. **Smart Architecture-Preserving Compaction (`custom-compaction.ts`):**
    * When context limits approach, compaction isolates modified files, verified decisions, and active tasks rather than performing lossy truncation.
 

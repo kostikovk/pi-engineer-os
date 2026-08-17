@@ -30,6 +30,12 @@ Before claiming a task is complete, run the project's verification suite:
 - **Tests**: `{{TEST_COMMAND}}`
 - **Lint**: `{{LINT_COMMAND}}`
 
-## 7. Commit Standards
+## 7. Task Lifecycle & External Trackers
+- **External Trackers**: Reference external issue keys (`PROJ-123`, `#45`) in `/grill`, `/spec`, and `/tickets`.
+- **Active Buffer**: Active technical slices live in `docs/tickets.md` and sync to the interactive TUI (`todo`).
+- **Completion**: Completed slices are updated with a 1-line verified proof (`[x] Slice -> Verified by <test> (Commit: <hash>)`).
+- **Archiving**: Finished milestones are archived to `docs/archive/tickets-*.md` to keep the active context clean.
+
+## 8. Commit Standards
 - Use Conventional Commits (`feat:`, `fix:`, `refactor:`, `chore:`, `test:`).
 - One logical change per atomic commit.
