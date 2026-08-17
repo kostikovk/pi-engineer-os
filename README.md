@@ -29,7 +29,14 @@ pi-engineer-os/
 │   ├── diagnosing-bugs/        # 5-phase root-cause cycle, reproduction tests, sanitization
 │   └── code-review/            # Dual-axis audit (12 Fowler Smells + Spec Fidelity)
 ├── ⚡ prompts/                 # Standard SDLC workflows (/bootstrap, /grill, /spec, etc.)
+├── 🤖 agents/                  # Specialized Subagents (Parallel background execution)
+│   ├── scout.md                # Rapid codebase recon & AST dependency mapping
+│   ├── researcher.md           # Live Context7 docs & breaking changes verification
+│   ├── test-runner.md          # Parallel test execution & flakiness diagnosis
+│   ├── reviewer.md             # 2-axis Fowler smells & security review (Sonnet)
+│   └── architect.md            # Deep module contracts & ADR trade-offs (Opus)
 ├── 🛡️ extensions/              # Context preservation, safety gates, and live docs
+│   ├── subagent/               # Subagent orchestration engine (single, parallel, chain)
 │   ├── github-issue-autocomplete.ts # Fast fuzzy `#issue` autocompletion in prompt input
 │   ├── safety-gate.ts          # Protection against rm -rf, git force push, and DROP DB
 │   ├── git-merge-and-resolve.ts # AI conflict resolver & `/resolve-conflicts` command
@@ -82,6 +89,33 @@ pi-engineer-os/
    * **Active Task Buffer & Archiving**: Active tickets live in `docs/tickets.md` and are archived to `docs/archive/tickets-*.md` upon milestone completion, preventing context bloat.
 3. **Smart Architecture-Preserving Compaction (`custom-compaction.ts`):**
    * When context limits approach, compaction isolates modified files, verified decisions, and active tasks rather than performing lossy truncation.
+
+---
+
+## 🤖 Universal Parallel Subagents (`agents/`)
+
+`pi-engineer-os` includes 5 universal, stack-agnostic subagents that run in **isolated sub-processes**. They operate without polluting your main conversation context and can run **in parallel**:
+
+| Subagent | Model | Purpose & Universal Capabilities |
+| :--- | :--- | :--- |
+| **`scout`** | `google/gemini-3.7-flash` | **Codebase Recon:** Rapidly maps file trees, traces dependencies/imports, and extracts AST interface snapshots across any language (Rust, Go, TS, Python, C++, Java). |
+| **`researcher`** | `google/gemini-3.7-flash` | **Live Docs & Specs:** Queries Context7 and live specs to verify modern API contracts, breaking changes, and migration paths without hallucinations. |
+| **`test-runner`** | `google/gemini-3.7-flash` | **Isolated Testing:** Executes test suites (`cargo test`, `pytest`, `bun test`, `vitest`, `go test`), filters terminal noise, and diagnoses assertion diffs. |
+| **`reviewer`** | `anthropic/claude-sonnet-5` | **Two-Axis Audit:** Strict read-only review against 12 Fowler Code Smells, Deep Module boundaries, and OWASP security/regression vulnerabilities. |
+| **`architect`** | `anthropic/claude-opus-5` | **Deep Systems Modeling:** Ousterhout Deep Modules, Domain Ubiquitous Language, Design-It-Twice trade-off evaluation, and ADR creation. |
+
+### How to Trigger Subagents:
+
+```markdown
+# 1. Single Background Task:
+"Use scout to inspect the payment gateway integration"
+
+# 2. Parallel Background Execution:
+"Run 2 scouts in parallel: one to analyze the database repository layer, one to trace the HTTP router"
+
+# 3. Chained Workflow Pipeline:
+"Run subagent pipeline: scout -> architect -> reviewer"
+```
 
 ---
 

@@ -50,7 +50,11 @@ if [ "$TARGET_MODE" = "--global" ]; then
   mkdir -p "$HOME/.pi/agent/extensions"
   cp -r "$SCRIPT_DIR"/extensions/* "$HOME/.pi/agent/extensions/"
   
-  # 3. Install Skills
+  # 3. Install Subagents & Agents
+  mkdir -p "$HOME/.pi/agent/agents"
+  cp -r "$SCRIPT_DIR"/agents/* "$HOME/.pi/agent/agents/"
+  
+  # 4. Install Skills
   mkdir -p "$HOME/.pi/agent/skills" "$HOME/.agents/skills"
   for skill in "$SCRIPT_DIR"/skills/*; do
     if [ -d "$skill" ]; then
@@ -59,7 +63,7 @@ if [ "$TARGET_MODE" = "--global" ]; then
     fi
   done
   
-  # 4. Copy Presets & Settings
+  # 5. Copy Presets & Settings
   mkdir -p "$HOME/.pi/agent"
   cp "$SCRIPT_DIR/config/presets.json" "$HOME/.pi/agent/presets.json"
   if [ ! -f "$HOME/.pi/agent/settings.json" ]; then
@@ -79,7 +83,15 @@ elif [ "$TARGET_MODE" = "--project" ]; then
   mkdir -p "$PROJECT_DIR/.pi/prompts"
   cp -r "$SCRIPT_DIR"/prompts/* "$PROJECT_DIR/.pi/prompts/"
   
-  # 2. Install Skills
+  # 2. Install Subagents
+  mkdir -p "$PROJECT_DIR/.pi/agents"
+  cp -r "$SCRIPT_DIR"/agents/* "$PROJECT_DIR/.pi/agents/"
+  
+  # 3. Install Extensions
+  mkdir -p "$PROJECT_DIR/.pi/extensions"
+  cp -r "$SCRIPT_DIR"/extensions/* "$PROJECT_DIR/.pi/extensions/"
+  
+  # 4. Install Skills
   mkdir -p "$PROJECT_DIR/.agents/skills"
   for skill in "$SCRIPT_DIR"/skills/*; do
     if [ -d "$skill" ]; then
@@ -87,7 +99,7 @@ elif [ "$TARGET_MODE" = "--project" ]; then
     fi
   done
   
-  # 3. Templates (if not already present)
+  # 5. Templates (if not already present)
   if [ ! -f "$PROJECT_DIR/AGENTS.md" ]; then
     cp "$SCRIPT_DIR/templates/AGENTS.template.md" "$PROJECT_DIR/AGENTS.md"
   fi
