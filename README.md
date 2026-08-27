@@ -111,10 +111,13 @@ pi-engineer-os/
 
 ## 🤖 Universal Parallel Subagents (`agents/`)
 
-`pi-engineer-os` includes 11 specialized, stack-agnostic subagents that run in **isolated sub-processes**. They operate without polluting your main conversation context and can run **in parallel**:
+`pi-engineer-os` includes 14 specialized, stack-agnostic subagents that run in **isolated sub-processes**. They operate without polluting your main conversation context and can run **in parallel**:
 
 | Subagent | Model | Purpose & Universal Capabilities |
 | :--- | :--- | :--- |
+| **`product-manager`** | `anthropic/claude-opus-5` | **Product & Requirements:** User journeys, PRDs, Given-When-Then Acceptance Criteria, and feature backlog prioritization. |
+| **`frontend`** | `anthropic/claude-sonnet-5` | **Frontend Architecture & UI/UX:** Responsive component trees, client state, a11y (WCAG 2.1 AA), design systems, and API contract integration. |
+| **`backend`** | `anthropic/claude-sonnet-5` | **Backend & Distributed Systems:** High-throughput APIs, domain business logic, data models, background workers, and resilient service boundaries. |
 | **`scout`** | `google/gemini-3.7-flash` | **Codebase Recon:** Rapidly maps file trees, traces dependencies/imports, and extracts AST interface snapshots across any language. |
 | **`researcher`** | `google/gemini-3.7-flash` | **Live Docs & Specs:** Queries Context7 and live specs to verify modern API contracts, breaking changes, and migration paths without hallucinations. |
 | **`qa`** | `anthropic/claude-sonnet-5` | **Acceptance & E2E Testing:** Validates implementations against Acceptance Criteria (Given-When-Then), hunts adversarial edge cases, and drafts E2E tests. |

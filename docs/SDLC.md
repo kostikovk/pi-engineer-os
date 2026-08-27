@@ -48,12 +48,17 @@ Before writing code in an unfamiliar repository:
 
 ---
 
-## 2. Architecture & Specification
+## 2. Product Requirements, Architecture & Specification
 
 Never jump straight into coding complex features:
-- Run `/grill <feature>`: The agent acts as a relentless Staff Architect grilling you on edge cases, data invariants, concurrency, and failure modes.
-- Run `/spec <feature>`: Synthesizes requirements into a standardized RFC (`docs/specs/RFC-xxx.md`).
-- Document irreversible decisions as **Architecture Decision Records (ADRs)** in `docs/adr/`.
+- **Product Requirements Document (`/prd <feature>` or `product-manager` subagent)**:
+  - Formulates user personas, user journeys, Given-When-Then Acceptance Criteria, and strict MVP scope boundaries (In-Scope vs Out-of-Scope).
+- **Staff Architect Challenge (`/grill <feature>`)**:
+  - The agent acts as a relentless Staff Architect grilling you on edge cases, data invariants, concurrency, and failure modes.
+- **Technical RFC (`/spec <feature>`)**:
+  - Synthesizes product and technical requirements into a standardized RFC (`docs/specs/RFC-xxx.md`).
+- **ADR Baseline**:
+  - Document irreversible decisions as **Architecture Decision Records (ADRs)** in `docs/adr/`.
 - Ensure Ubiquitous Language terms are registered in `CONTEXT.md`.
 
 ---
@@ -67,14 +72,17 @@ Break large features into thin vertical slices:
 
 ---
 
-## 4. TDD & Implementation
+## 4. Specialized Team Implementation (TDD & Deep Modules)
 
-Follow strict **Red-Green-Refactor** discipline:
+Follow strict **Red-Green-Refactor** discipline with specialized subagent delegation:
+- **Backend Team (`backend` subagent)**: Implements domain aggregates, repositories, migrations, and resilient API contracts with strict schema validation.
+- **Frontend Team (`frontend` subagent)**: Implements component hierarchies, client state, accessibility (WCAG 2.1 AA), and handles the 5 core UI states (Loading, Success, Empty, Error, Unauthorized).
 - Run `/implement <ticket>`:
   1. **Check Failure Memories**: Queries past project mistakes and known pitfalls.
-  2. **Write Failing Test (Red)**: Test against behavior and public interface, not private implementation.
-  3. **Minimal Implementation (Green)**: Write clean code to satisfy the test.
-  4. **Refactor**: Clean up design smells while tests pass.
+  2. **Verify Manifest Versions**: Inspects `package.json` / manifests for exact installed versions before reading docs.
+  3. **Write Failing Test (Red)**: Test against behavior and public interface, not private implementation.
+  4. **Minimal Implementation (Green)**: Write clean code to satisfy the test.
+  5. **Refactor**: Clean up design smells while tests pass.
 - Use `/handoff <next-phase>` to transition cleanly between tasks without losing architectural context or suffering from lossy token compaction.
 
 ---

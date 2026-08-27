@@ -4,10 +4,13 @@
 
 ---
 
-## 👥 The 11 Specialized Subagents
+## 👥 The 14 Specialized Subagents
 
 | Agent | Model | Primary Mission | Strengths & Tools |
 |---|---|---|---|
+| **`product-manager`** | Max Reasoning (Opus / Sonnet) | User journeys, PRDs, Gherkin Acceptance Criteria (Given-When-Then), and feature backlog prioritization | Product framing, scope bounding, user story authoring |
+| **`frontend`** | High Reasoning (Sonnet) | Responsive component hierarchies, client state, a11y (WCAG 2.1 AA), design systems, and API contract integration | UI/UX architecture, Deep Frontend Modules, state & rendering |
+| **`backend`** | High Reasoning (Sonnet) | High-throughput APIs, domain business logic, data models, background workers, and resilient service boundaries | Server architecture, Deep Backend Modules, DDD, resilience |
 | **`scout`** | Fast (Gemini Flash / Haiku) | Rapid codebase recon, AST dependency tracing, and file mapping | Read-only codebase explorer, fast symbol resolution |
 | **`researcher`** | Fast / General | Upstream library docs, breaking changes, Context7 search | Web & API documentation specialist |
 | **`qa`** | High Reasoning (Sonnet) | Acceptance criteria (Given-When-Then), edge cases, E2E user journeys, and adversarial input testing | Verification engineer, bug reproduction, Playwright/E2E tests |
