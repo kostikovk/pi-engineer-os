@@ -19,6 +19,76 @@ This repository adheres to standard clean code guidelines and actively eliminate
 
 ---
 
+## Zero-Noise Code Commenting Policy
+
+This repository strictly enforces John Ousterhout's (*A Philosophy of Software Design*), Robert C. Martin's (*Clean Code*), and Google Style Guide commenting standards. **All code must be self-documenting first.**
+
+### 🚫 Prohibited Comments (AI Comment Noise / Anti-Patterns)
+1. **Echo / Redundant Comments**: Do NOT repeat the name of a function, variable, or statement in plain English.
+   ```typescript
+   // ❌ BAD:
+   // Fetch user by id
+   function fetchUserById(id: string) {}
+
+   // ❌ BAD:
+   // Check if user is authenticated
+   if (user.isAuthenticated) {}
+
+   // ❌ BAD:
+   // Initialize count
+   let count = 0;
+   ```
+2. **"HOW" Narration Comments**: Never narrate mechanics that are obvious from readable code.
+   ```typescript
+   // ❌ BAD:
+   // Filter active users and map to their emails
+   const emails = users.filter(u => u.isActive).map(u => u.email);
+   ```
+3. **Decorative Banners & ASCII Boxes**:
+   ```typescript
+   // ❌ BAD:
+   // ==========================================
+   // HELPER FUNCTIONS
+   // ==========================================
+   ```
+4. **Changelog / Author Tags**: Never leave history traces inside files (use `git blame` / `git log`).
+   ```typescript
+   // ❌ BAD:
+   // Added by AI on 2025-01-10 to fix ticket #123
+   ```
+5. **Comments Explaining Bad Code**: Do not comment messy logic — refactor the code (meaningful identifiers, smaller functions).
+
+### ✅ Legitimate Comments (The Only 4 Allowed Types)
+1. **Design Rationale ("WHY")**: Explains non-obvious engineering decisions, trade-offs, or business logic constraints that cannot be inferred from code.
+   ```typescript
+   // ✅ GOOD:
+   // We use HTTP 302 instead of 301 because legacy mobile clients (v1.x)
+   // cache 301 permanently, breaking regional DNS migrations.
+   ```
+2. **External Bug Workarounds & Issues**: References external vendor/browser bugs or workarounds.
+   ```typescript
+   // ✅ GOOD:
+   // Workaround for Safari 16 WebKit flexbox rendering bug (see https://bugs.webkit.org/show_bug.cgi?id=12345)
+   ```
+3. **Public Contract Documentation (TSDoc / JSDoc)**: Essential for exported module boundaries to define parameters, return values, exceptions (`@throws`), and preconditions without restating types.
+   ```typescript
+   /**
+    * Charges customer account with automatic idempotency handling.
+    *
+    * @throws {PaymentGatewayError} If provider returns 5xx after 3 retries.
+    * @note Thread-safe: Acquires distributed Redis lock per accountId.
+    */
+   export async function chargeAccount(accountId: string, amount: Money): Promise<Receipt>
+   ```
+4. **Complex Invariants, Math Formulas, or Security Constraints**:
+   ```typescript
+   // ✅ GOOD:
+   // RFC 5322 simplified email validation regex; strictly enforces TLD presence.
+   const EMAIL_REGEX = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+   ```
+
+---
+
 ## Git Commit Standard (Conventional Commits 1.0.0)
 
 All commits in this repository must be **atomic**, **verified** (typecheck/tests pass), and formatted according to **Conventional Commits**:

@@ -14,7 +14,9 @@ Details: ${@:2:-"Follow spec"}
    - Write minimal, surgical implementation code to make it pass (Green).
    - Refactor for cleanliness and Deep Module principles without breaking the test.
 3. **Continuous Typechecking**: Run the project's typechecker (e.g. `tsc --noEmit`, `cargo check`) after significant edits.
-4. **Surgical Edits**: Prefer precise targeted edits over full file rewrites. Do not modify unrelated code or styling.
+4. **Surgical Edits & Zero-Noise Comments**:
+   - Prefer precise targeted edits over full file rewrites. Do not modify unrelated code or styling.
+   - Strictly follow the **Zero-Noise Commenting Policy**: No echo comments, no inline narration (`// check if valid`), no ASCII banners. Code must be self-documenting. Use comments only for non-obvious *WHY* rationale, vendor bug workarounds, or exported contract TSDoc.
 5. **Self-Review**: Run `/review` before finalizing to catch smells, unused imports, or missed edge cases.
 6. **Atomic Commit & Task Sync**:
    - Commit with a clean Conventional Commit message when verified.

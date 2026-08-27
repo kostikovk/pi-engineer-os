@@ -12,8 +12,9 @@ Details: ${@:2:-"Apply standard Fowler/Ousterhout cleanup"}
 2. **Strict Behavioral Preservation**:
    - Do NOT add new features. Do NOT change external API contracts unless explicitly instructed.
    - You may extract interfaces, rename variables, inline middlemen, or move functions to cohesive modules.
-3. **Smell Targeting (Fowler)**:
+3. **Smell Targeting & Comment Cleanup**:
    - Identify which of the 12 Code Smells you are eliminating (e.g., extracting Duplicate Code, fixing Feature Envy, typing Primitive Obsession).
+   - Strip out stale, noisy, or redundant AI comments in favor of self-documenting code.
 4. **Deep Module Design (Ousterhout)**:
    - Ensure the resulting module has a simpler public interface than its implementation.
 5. **Continuous Verification**:

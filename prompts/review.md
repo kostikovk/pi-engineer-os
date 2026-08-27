@@ -12,6 +12,7 @@ Evaluate against two distinct axes:
 ### Axis 1: Standards & Fowler Smells Baseline
 Check the diff for:
 - **Violations of documented repo standards** (in `AGENTS.md`, `CODING_STANDARDS.md`).
+- **AI Comment Noise & Redundant Comments**: Flag any echo comments (`// fetch user`), inline mechanic narration, decorative banners, or changelog tags. Ensure comments only explain non-obvious *WHY* or public TSDoc contracts.
 - **12 Fowler Smells**:
   1. *Mysterious Name* (unclear purpose)
   2. *Duplicated Code* (extract shared logic)
