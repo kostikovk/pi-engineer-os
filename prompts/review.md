@@ -9,10 +9,20 @@ Perform a thorough **Two-Axis Code Review** of changes since the base branch.
 
 Evaluate against two distinct axes:
 
-### Axis 1: Standards & Fowler Smells Baseline
+### Axis 1: Standards & Domain Quality
 Check the diff for:
 - **Violations of documented repo standards** (in `AGENTS.md`, `CODING_STANDARDS.md`).
-- **AI Comment Noise & Redundant Comments**: Flag any echo comments (`// fetch user`), inline mechanic narration, decorative banners, or changelog tags. Ensure comments only explain non-obvious *WHY* or public TSDoc contracts.
+- **Zero-Noise Comments Policy**: Flag any echo comments (`// fetch user`), inline mechanic narration, decorative banners, or changelog tags.
+- **Frontend Standards (if frontend files modified)**:
+  - 5 UI States present (Loading skeleton, Success, Actionable Empty, Error boundary with retry, Unauthorized).
+  - Accessibility (WCAG 2.1 AA, semantic HTML, keyboard navigable, focus traps).
+  - State colocation & zero redundant server cache duplication in `useState`.
+  - Design token adherence (no raw hex/pixel constants).
+- **Backend Standards (if backend files modified)**:
+  - Boundary input validation via schemas (Zod/Pydantic/Serde).
+  - Database transactional atomicity, index coverage, and zero $N+1$ queries.
+  - Idempotency support on mutating endpoints & concurrency safety.
+  - Standard RFC 7807 error envelopes and correct HTTP status codes.
 - **12 Fowler Smells**:
   1. *Mysterious Name* (unclear purpose)
   2. *Duplicated Code* (extract shared logic)

@@ -89,6 +89,48 @@ This repository strictly enforces John Ousterhout's (*A Philosophy of Software D
 
 ---
 
+## Frontend Engineering Review Standards
+
+All frontend code must satisfy the following 5 core criteria:
+1. **5 Essential UI States**: Every interactive screen or component must explicitly handle:
+   - 🌀 **Loading**: Skeleton or Suspense boundary (0 Layout Shift / CLS = 0).
+   - ⚡ **Success**: Clean data presentation with optimistic feedback where applicable.
+   - 📭 **Empty**: Actionable empty state guiding the user.
+   - 🚨 **Error**: Granular error boundary with retry capability.
+   - 🔒 **Unauthorized / Restricted**: Clear access-denied state or redirect.
+2. **Accessibility (WCAG 2.1 AA)**:
+   - Semantic HTML tags (`<button>`, `<nav>`, `<main>`, `<article>` over clickable `<div>`).
+   - Keyboard accessible (Tab, Enter, Escape), focus management in dialogs/modals, proper ARIA labels.
+3. **State & Re-render Ergonomics**:
+   - Do NOT duplicate server state in local `useState`. Use server cache (TanStack Query / SWR / RSC).
+   - Colocate state as close as possible to leaf consumers to avoid cascading re-renders.
+4. **Design System & Token Compliance**:
+   - Use design tokens / CSS variables for spacing, colors, and typography. Never use hardcoded arbitrary hex colors or rogue pixel values.
+5. **Contract Adherence**:
+   - Strict TypeScript prop types and response validation matching the shared API contract.
+
+---
+
+## Backend Engineering Review Standards
+
+All backend code must satisfy the following 5 core criteria:
+1. **Strict Boundary Validation**:
+   - Every external payload (body, query, headers, params) must be validated via schema (Zod, Pydantic, Serde) before executing domain logic.
+2. **Database Invariants & Query Efficiency**:
+   - No $N+1$ queries (use eager loading / DataLoader / JOINs).
+   - Ensure foreign keys and filter fields have backing database indexes.
+   - Wrap multi-table mutations inside atomic database transactions.
+3. **Idempotency & Race Condition Defense**:
+   - Mutating operations must support idempotency keys or unique constraints to prevent double-charges/duplicate records on client retries.
+   - Guard concurrent balance/inventory mutations with optimistic locking or row locks.
+4. **RFC 7807 Standard Error Envelopes**:
+   - Return structured error objects with machine-readable codes (`type`, `title`, `status`, `detail`).
+   - Never leak internal stack traces or database schema details in 500 responses.
+5. **Deep Domain Encapsulation**:
+   - Keep business logic isolated from HTTP/RPC transport layers. Controllers must delegate to pure domain services.
+
+---
+
 ## Git Commit Standard (Conventional Commits 1.0.0)
 
 All commits in this repository must be **atomic**, **verified** (typecheck/tests pass), and formatted according to **Conventional Commits**:
