@@ -27,6 +27,8 @@ pi-engineer-os/
 │   ├── domain-modeling/        # Ubiquitous Language, CONTEXT.md, ADR architecture records
 │   ├── tdd/                    # Red-Green-Refactor, Mock boundaries, Test surface rules
 │   ├── diagnosing-bugs/        # 5-phase root-cause cycle, reproduction tests, sanitization
+│   ├── stacked-prs/            # Stacked Diffs methodology & linear PR decomposition
+│   ├── git-commit-discipline/  # Atomic conventional commits & 50/72 rule
 │   └── code-review/            # Dual-axis audit (12 Fowler Smells + Spec Fidelity)
 ├── ⚡ prompts/                 # Standard SDLC workflows (/bootstrap, /grill, /spec, etc.)
 ├── 🤖 agents/                  # Specialized Subagents (Parallel background execution)
@@ -87,6 +89,7 @@ pi-engineer-os/
 | **`/docs <lib> <q>`** | When using external frameworks & libraries | Fetches clean, version-accurate documentation via Context7 API | Up-to-date syntax without hallucinations |
 | **`/commit`** | When staging verified changes | Validates working state and generates atomic Conventional Commits | Verified atomic git commits |
 | **`/pr`** | When a ticket or feature is completed | Generates a standardized Pull Request summary with test proofs and checklists | Ready-to-merge PR description |
+| **`/gh-stack`** | When implementing a large feature or refactor | Decomposes changes into a linear stack of small, chained Pull Requests (Stacked Diffs) | Chained atomic PRs with navigation |
 | **`/release`** | When cutting a production release | Calculates SemVer bump, updates CHANGELOG, and creates release tags | Versioned release artifact |
 | **`/wait-what`** | If an explanation is too abstract or convoluted | Forces the agent to re-explain the last decision in plain terms referencing `CONTEXT.md` | Clear, jargon-free explanation |
 
