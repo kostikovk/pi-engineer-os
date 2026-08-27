@@ -78,10 +78,12 @@ pi-engineer-os/
 | Command | When to Run? | What Does the Agent Do? | Tangible Output |
 | :--- | :--- | :--- | :--- |
 | **`/bootstrap`** | First time opening any new or existing project | Analyzes topology (Monolith/Monorepo), dependencies, test runners, and generates a custom `AGENTS.md` | Tailored AI configuration |
+| **`/prd <topic>`** | When conceptualizing a new feature | Generates a structured Product Requirements Document (PRD) with user personas, user journeys, and Gherkin ACs | Actionable Product Scope |
 | **`/grill <topic>`** | Before starting any non-trivial feature or refactor | Conducts a structured decision-tree interview (frontier questions) to eradicate ambiguity | 100% clarified requirements |
 | **`/spec <topic>`** | Once requirements are agreed upon | Produces an architectural RFC: Deep Module boundaries, Zod/TS schemas, non-goals, and edge cases | Actionable Technical Spec |
 | **`/tickets`** | After spec approval | Breaks the spec into **vertical tracer-bullet slices** with explicit blocking dependencies | Dependency-ordered task list |
-| **`/implement`** | When executing a ticket or feature | Executes strict **TDD (Red-Green-Refactor)**, verifies types, and checks `context7_docs` | Clean, tested production code |
+| **`/implement`** | When executing a ticket sequentially | Executes strict **TDD (Red-Green-Refactor)**, verifies types, and checks `context7_docs` | Clean, tested production code |
+| **`/swarm <ticket>`** | When executing fullstack tickets in parallel | Dispatches a **Contract-Driven Swarm** across isolated Backend, Frontend, and QA workers | High-speed verified parallel delivery |
 | **`/handoff <goal>`** | When transitioning between SDLC phases | Transfers distilled architecture decisions, modified files, and acceptance criteria to a fresh session | Clean context without degradation |
 | **`/diagnose <bug>`** | When encountering bugs or regressions | Enforces a 5-phase root cause analysis: reproduces via failing test before modifying code | Verified fix with regression test |
 | **`/review`** | Before merging or creating a PR | Performs a dual-axis audit: 12 Fowler code smells + spec fidelity check | Structured blocker list & verdict |

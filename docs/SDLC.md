@@ -85,12 +85,17 @@ Break large features into thin vertical slices:
 Follow strict **Red-Green-Refactor** discipline with specialized subagent delegation:
 - **Backend Team (`backend` subagent)**: Implements domain aggregates, repositories, migrations, and resilient API contracts with strict schema validation.
 - **Frontend Team (`frontend` subagent)**: Implements component hierarchies, client state, accessibility (WCAG 2.1 AA), and handles the 5 core UI states (Loading, Success, Empty, Error, Unauthorized).
-- Run `/implement <ticket>`:
+- **Sequential Slicing (`/implement <ticket>`)**:
   1. **Check Failure Memories**: Queries past project mistakes and known pitfalls.
   2. **Verify Manifest Versions**: Inspects `package.json` / manifests for exact installed versions before reading docs.
   3. **Write Failing Test (Red)**: Test against behavior and public interface, not private implementation.
   4. **Minimal Implementation (Green)**: Write clean code to satisfy the test.
   5. **Refactor**: Clean up design smells while tests pass.
+- **Contract-Driven Parallel Swarm (`/swarm <ticket>`)**:
+  1. **Contract Lock**: Creates/verifies shared typed contracts (`Zod` / `TypeScript` / `OpenAPI`) as the Single Source of Truth.
+  2. **Parallel Swarm**: Concurrently executes `backend`, `frontend`, and `qa` subagents with strict, non-overlapping file boundaries.
+  3. **Evaluator-Optimizer Loop**: Runs `test-runner` to verify test suite, iteratively refining code until all tests pass.
+  4. **Task Synchronization**: Audits via `reviewer`, records verified proof in `docs/tickets.md`, toggles `todo`, and creates an atomic commit.
 - Use `/handoff <next-phase>` to transition cleanly between tasks without losing architectural context or suffering from lossy token compaction.
 
 ---
