@@ -28,6 +28,7 @@ pi-engineer-os/
 │   ├── tdd/                    # Red-Green-Refactor, Mock boundaries, Test surface rules
 │   ├── diagnosing-bugs/        # 5-phase root-cause cycle, reproduction tests, sanitization
 │   ├── stacked-prs/            # Stacked Diffs methodology & linear PR decomposition
+│   ├── gh-stack/               # GitHub CLI gh-stack extension workflows & references
 │   ├── git-commit-discipline/  # Atomic conventional commits & 50/72 rule
 │   └── code-review/            # Dual-axis audit (12 Fowler Smells + Spec Fidelity)
 ├── ⚡ prompts/                 # Standard SDLC workflows (/bootstrap, /grill, /spec, etc.)

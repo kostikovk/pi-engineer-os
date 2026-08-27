@@ -1,6 +1,6 @@
 ---
 name: stacked-prs
-description: Methodology for decomposing large features into a linear stack of small, atomic, chained Pull Requests (Stacked Diffs) to simplify code review, accelerate CI, and eliminate monolithic review bottlenecks.
+description: Methodology for decomposing large features into a linear stack of small, atomic, chained Pull Requests (Stacked Diffs) using the official GitHub CLI gh-stack extension or standard Git/gh chaining.
 ---
 
 # Stacked PRs (Stacked Diffs) Engineering Standard
@@ -40,7 +40,75 @@ When splitting a large feature into a stack, decompose along these architectural
 
 ---
 
-## 🛠️ Step-by-Step Stacking Protocol
+## ⚡ Option A: Automated Workflow with `gh-stack` CLI Extension (Recommended)
+
+GitHub officially supports stacked PRs via the `gh-stack` extension (`gh extension install github/gh-stack`). It tracks stack ordering locally in `.git/gh-stack` and links PRs into native GitHub Stacks.
+
+### 1. Setup
+```bash
+gh extension install github/gh-stack
+git config rerere.enabled true         # remember conflict resolutions across rebases
+git config remote.pushDefault origin   # recommended for multi-remote setups
+```
+
+### 2. Fast Non-Interactive Loop (For AI Agents & CLI)
+Always use non-interactive flags when calling from scripts/agents:
+
+```bash
+# 1. Initialize stack with all planned branch layers
+gh stack init feat/auth-1-models feat/auth-2-crypto feat/auth-3-endpoints
+
+# 2. Checkout Layer 1 and implement
+gh stack bottom
+# ... write Layer 1 code & tests ...
+git add . && git commit -m "feat(auth): define models and schema"
+
+# 3. Move upstack and implement Layer 2
+gh stack up
+# ... write Layer 2 code & tests ...
+git add . && git commit -m "feat(auth): implement crypto & hashing"
+
+# 4. Move upstack and implement Layer 3
+gh stack up
+# ... write Layer 3 code & tests ...
+git add . && git commit -m "feat(auth): add auth HTTP endpoints"
+
+# 5. Push and submit PR stack to GitHub
+gh stack submit --auto --open
+
+# 6. View stack status as JSON
+gh stack view --json
+```
+
+### 3. Modifying a Lower Layer and Cascading Rebase
+```bash
+# Jump to the layer needing changes
+gh stack checkout feat/auth-1-models
+# ... make changes ...
+git commit -am "fix(auth): add missing email format validation"
+
+# Rebase all upper layers automatically onto this fix
+gh stack rebase --upstack
+
+# Return to top and push
+gh stack top
+gh stack push
+```
+
+### 4. Syncing & Merging
+```bash
+# Sync with remote and auto-prune merged branches
+gh stack sync --prune
+
+# Merge PR and all prerequisites atomically
+gh stack merge <pr-number> --yes --squash
+```
+
+---
+
+## 🛠️ Option B: Manual Git + `gh` CLI Protocol (Fallback)
+
+If `gh-stack` extension is not installed, follow the manual chaining protocol:
 
 ### Step 1: Branch Creation & Git Chaining
 Always branch from the immediate predecessor:
@@ -91,9 +159,9 @@ gh pr create --base feat/checkout-2-service --head feat/checkout-3-api \
 
 ---
 
-### Step 3: Stack Navigation Header (Required in all PR bodies)
+### Step 3: Stack Navigation Header (Required in all PR bodies for Manual Stacks)
 
-Every PR in the stack MUST include the **Stack Navigation Table** at the top of its description so reviewers can easily navigate up and down the chain:
+Every PR in a manual stack MUST include the **Stack Navigation Table** at the top of its description so reviewers can easily navigate up and down the chain:
 
 ```markdown
 ### 🥞 Stacked PRs
@@ -140,3 +208,4 @@ When upstream changes happen or changes are requested on PR 1:
    ```
 3. Rebase PR 2 on latest `main` and push.
 4. Merge PR 2 into `main`, then retarget PR 3.
+

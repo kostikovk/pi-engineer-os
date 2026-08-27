@@ -88,6 +88,9 @@ Verify quality before merging:
 
 ## 6. Delivery & Release
 
+- **Stacked PRs & Slicing (`/gh-stack`)**:
+  - Automatically break large multi-layer features into a linear chain of atomic PRs using the `stacked-prs` / `gh-stack` methodology.
+  - Supports both the official GitHub CLI `gh-stack` extension (`gh stack init`, `gh stack submit --auto --open`, `gh stack sync --prune`) and standard `gh pr create` chaining.
 - Run `/commit`: Inspects git diff, enforces Conventional Commits (`feat:`, `fix:`, `refactor:`), and verifies tests before committing.
 - Run `/pr`: Generates a structured Pull Request description with summary, architectural rationale, and verification steps.
 - Run `/release`: Calculates SemVer bump, generates CHANGELOG, and creates release tags.
