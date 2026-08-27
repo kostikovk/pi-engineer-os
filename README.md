@@ -37,6 +37,9 @@ pi-engineer-os/
 │   └── architect.md            # Deep module contracts & ADR trade-offs (Opus)
 ├── 🛡️ extensions/              # Context preservation, safety gates, and live docs
 │   ├── subagent/               # Subagent orchestration engine (single, parallel, chain)
+│   ├── handoff.ts              # Lossless SDLC context transfer (/handoff)
+│   ├── dirty-repo-guard.ts     # Uncommitted changes guard before session switches
+│   ├── project-rules.ts        # Dynamic loader for .claude/rules, .cursorrules & AGENTS
 │   ├── github-issue-autocomplete.ts # Fast fuzzy `#issue` autocompletion in prompt input
 │   ├── safety-gate.ts          # Protection against rm -rf, git force push, and DROP DB
 │   ├── git-merge-and-resolve.ts # AI conflict resolver & `/resolve-conflicts` command
@@ -70,11 +73,15 @@ pi-engineer-os/
 | **`/spec <topic>`** | Once requirements are agreed upon | Produces an architectural RFC: Deep Module boundaries, Zod/TS schemas, non-goals, and edge cases | Actionable Technical Spec |
 | **`/tickets`** | After spec approval | Breaks the spec into **vertical tracer-bullet slices** with explicit blocking dependencies | Dependency-ordered task list |
 | **`/implement`** | When executing a ticket or feature | Executes strict **TDD (Red-Green-Refactor)**, verifies types, and checks `context7_docs` | Clean, tested production code |
+| **`/handoff <goal>`** | When transitioning between SDLC phases | Transfers distilled architecture decisions, modified files, and acceptance criteria to a fresh session | Clean context without degradation |
 | **`/diagnose <bug>`** | When encountering bugs or regressions | Enforces a 5-phase root cause analysis: reproduces via failing test before modifying code | Verified fix with regression test |
 | **`/review`** | Before merging or creating a PR | Performs a dual-axis audit: 12 Fowler code smells + spec fidelity check | Structured blocker list & verdict |
+| **`/audit`** | For security and dependency compliance | Scans packages for CVEs and audits against OWASP Top 10 vulnerabilities | DevSecOps security report |
 | **`/resolve-conflicts`** | When Git merge conflicts occur (`<<<<<<<`) | Parses unmerged paths, analyzes conflicting branches, and generates clean semantic resolution | Cleanly resolved merge conflicts |
 | **`/docs <lib> <q>`** | When using external frameworks & libraries | Fetches clean, version-accurate documentation via Context7 API | Up-to-date syntax without hallucinations |
+| **`/commit`** | When staging verified changes | Validates working state and generates atomic Conventional Commits | Verified atomic git commits |
 | **`/pr`** | When a ticket or feature is completed | Generates a standardized Pull Request summary with test proofs and checklists | Ready-to-merge PR description |
+| **`/release`** | When cutting a production release | Calculates SemVer bump, updates CHANGELOG, and creates release tags | Versioned release artifact |
 | **`/wait-what`** | If an explanation is too abstract or convoluted | Forces the agent to re-explain the last decision in plain terms referencing `CONTEXT.md` | Clear, jargon-free explanation |
 
 ---
@@ -119,26 +126,28 @@ pi-engineer-os/
 
 ---
 
-## 🚀 Quickstart & Installation
+## 🚀 Quickstart & 1-Line Installation
 
-### 1. Installation
-
-#### Option A: Global Installation (Recommended)
-Installs all presets, extensions, skills, and templates to `~/.pi/agent/` for use across all repositories:
+### 1. One-Command Native Pi Package Install (Recommended)
+You can install `pi-engineer-os` globally with a single command via Pi's native package manager:
 ```bash
-cd /path/to/pi-engineer-os
-./setup.sh --global
+pi install git:github.com/kostikovk/pi-engineer-os
 ```
 
-#### Option B: Project-Local Installation
-Installs configs and extensions specifically into the current project's `.pi/` directory:
+Or install it for the current repository only:
 ```bash
-cd /path/to/your-project
-/path/to/pi-engineer-os/setup.sh --project
+pi install -l git:github.com/kostikovk/pi-engineer-os
 ```
 
-### 2. First Run in a Repository
-Open any project inside `pi`:
+### 2. Turnkey Shell Installer (Alternative)
+```bash
+git clone https://github.com/kostikovk/pi-engineer-os.git
+cd pi-engineer-os
+./setup.sh
+```
+
+### 3. First Run in Any Repository
+Open your project inside `pi`:
 ```bash
 pi
 ```
@@ -146,7 +155,17 @@ Run the automated onboarding command:
 ```text
 /bootstrap
 ```
-The agent scans the codebase topology, locates test runners and package managers, and provisions a tailored `AGENTS.md`.
+The agent scans the codebase topology, locates test runners and package managers, and provisions a tailored `AGENTS.md` and `CONTEXT.md`.
+
+---
+
+## 📚 Deep-Dive Documentation
+
+- [🔄 **SDLC Methodology Guide**](docs/SDLC.md) — 6-stage lifecycle from Recon to Delivery.
+- [🤖 **Subagent Orchestration**](docs/SUBAGENTS.md) — Specialized background agents, parallel swarms, and chains.
+- [🛡️ **Extension Ecosystem**](docs/EXTENSIONS.md) — Complete inventory of safety gates, token gauges, autocomplete, and handoffs.
+- [📦 **Package & Distribution Guide**](docs/PACKAGING.md) — Native `pi` package rules, overrides, and updates.
+- [🚀 **CI/CD & Headless Automation**](docs/CI-CD.md) — Automated PR reviews and DevSecOps audits in GitHub Actions.
 
 ---
 

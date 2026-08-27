@@ -1,0 +1,42 @@
+{
+  "name": "pi-engineer-os",
+  "version": "1.0.0",
+  "description": "The Turnkey Engineering Operating System for pi-coding-agent. Embedding deep modules, TDD, subagents, and SDLC discipline.",
+  "main": "extensions/subagent/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kostikovk/pi-engineer-os.git"
+  },
+  "keywords": [
+    "pi-package",
+    "pi-coding-agent",
+    "sdlc",
+    "software-engineering",
+    "subagents",
+    "tdd",
+    "architecture",
+    "extensions",
+    "skills"
+  ],
+  "author": "Kostikov K.",
+  "license": "MIT",
+  "pi": {
+    "extensions": [
+      "extensions/*.ts",
+      "extensions/*/index.ts"
+    ],
+    "skills": [
+      "skills"
+    ],
+    "prompts": [
+      "prompts"
+    ]
+  },
+  "peerDependencies": {
+    "@earendil-works/pi-coding-agent": "*",
+    "@earendil-works/pi-agent-core": "*",
+    "@earendil-works/pi-ai": "*",
+    "@earendil-works/pi-tui": "*",
+    "typebox": "*"
+  }
+}
