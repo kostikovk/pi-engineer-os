@@ -53,8 +53,11 @@ Before writing code in an unfamiliar repository:
 Never jump straight into coding complex features:
 - **Product Requirements Document (`/prd <feature>` or `product-manager` subagent)**:
   - Formulates user personas, user journeys, Given-When-Then Acceptance Criteria, and strict MVP scope boundaries (In-Scope vs Out-of-Scope).
-- **Staff Architect Challenge (`/grill <feature>`)**:
-  - The agent acts as a relentless Staff Architect grilling you on edge cases, data invariants, concurrency, and failure modes.
+- **Autonomous Architectural Grilling & Recommendation (`/grill <feature>`)**:
+  - The system autonomously analyzes the codebase, inspects real manifests, and synthesizes multiple architectural options (**Design It Twice**).
+  - Evaluates trade-offs across domains (Backend, Frontend, Database, Security).
+  - Presents clear proposals with pros/cons and a strong **Expert Recommendation**.
+  - **Strict Human Decision Gate**: The agent never decides or writes code autonomously; it halts and waits for explicit user confirmation before recording decisions or generating specs.
 - **Technical RFC (`/spec <feature>`)**:
   - Synthesizes product and technical requirements into a standardized RFC (`docs/specs/RFC-xxx.md`).
 - **ADR Baseline**:
