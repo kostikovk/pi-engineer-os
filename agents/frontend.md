@@ -36,6 +36,6 @@ Your mission is to design, implement, and review production-grade client interfa
 - **Accessibility & Responsive Grid**: Flex/Grid layout details, breakpoint strategies, and ARIA attributes.
 
 ## 🧪 Frontend Test & Verification Plan
-- **Component Tests**: Interaction and rendering tests (Vitest + React Testing Library).
+- **Component Tests**: Interaction and rendering tests (Vitest + React Testing Library) formatted with **Flat BDD naming** (`it('should [result] when [condition]')`).
 - **User Journey E2E**: Playwright / Cypress smoke tests verifying user flow.
 - **Core Web Vitals Impact**: Evaluation of bundle size, hydration cost, and Layout Shifts (CLS).

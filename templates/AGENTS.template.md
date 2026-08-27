@@ -11,8 +11,13 @@ Welcome to the project. All AI agents working in this repository must strictly a
 - Avoid **Shallow Modules**: bloated interfaces that merely delegate to other functions.
 - Apply **The Deletion Test**: If deleting a module makes complexity reappear across callers, the module is earning its keep.
 
-## 3. Test-Driven Development (TDD)
+## 3. Test-Driven Development (TDD) & Flat BDD Test Naming
 - When implementing a feature or fixing a bug, write a failing test first (*Red*).
+- **Mandatory Flat BDD Naming (`should...when...`)**: All automated tests must follow the flat BDD formula:
+  `it('should [expected outcome] when [trigger/condition]', ...)`
+  - No "AND" conjunctions (one behavior per test).
+  - No vague verbs (`works`, `handles`, `processes`).
+  - No implementation details or mock names in test titles.
 - Implement the minimal code required to pass (*Green*).
 - Refactor for clarity and performance without altering behavior (*Refactor*).
 

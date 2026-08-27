@@ -131,6 +131,63 @@ All backend code must satisfy the following 5 core criteria:
 
 ---
 
+## Flat BDD Test Naming Convention (`should...when...`)
+
+All automated test suites (unit, integration, and E2E in Vitest, Jest, PyTest, Go, Playwright) must adhere to the **Flat BDD Test Naming Convention**. Tests serve as living, executable documentation.
+
+### The Golden Formula:
+```typescript
+it('should [Expected Outcome / Behavior] when [Trigger / Input / Condition]', () => { ... })
+```
+
+### The 5 Iron Rules of Test Naming:
+1. **Single Responsibility (No "AND" in test titles)**: Each test must verify exactly ONE observable behavior. If you need "and", split into multiple focused tests.
+   - ❌ `it('should validate email and save user and send welcome email')`
+   - ✅ `it('should return 400 when email format is invalid')`
+   - ✅ `it('should persist user record when registration payload is valid')`
+   - ✅ `it('should emit UserRegisteredEvent when user creation succeeds')`
+2. **No Implementation Details**: Tests must verify behavior and contracts, not internal variable names, private methods, or mock calls.
+   - ❌ `it('should call mockUserRepository.save() with user object')`
+   - ✅ `it('should persist user to database when valid registration submitted')`
+3. **No Vague Verbs**: Never use words like `work`, `handle`, `process`, or `do`. Always name the exact expected outcome.
+   - ❌ `it('should work when button clicked')`
+   - ❌ `it('should handle error when API fails')`
+   - ✅ `it('should display error toast with retry action when network request fails')`
+   - ✅ `it('should calculate 15% discount when cart total exceeds $100')`
+4. **Domain Terminology (Ubiquitous Language)**: Use real domain vocabulary instead of raw code data types.
+   - ❌ `it('should return boolean false when string length is zero')`
+   - ✅ `it('should reject order when inventory count is zero')`
+5. **Clean Flat `it()` Phrasing**: `it` stands for the subject under test. The title must read naturally as a complete English sentence ("It should ... when ...").
+   - ❌ `it('test that it should ...')` or `it('it should ...')`
+   - ✅ `it('should issue JWT access token when credentials are valid')`
+
+### Code Example (Flat Style):
+```typescript
+describe('TransferService', () => {
+  it('should deduct amount from sender balance when transfer succeeds', async () => {
+    // Arrange
+    const sender = createAccount({ balance: 100 });
+    const recipient = createAccount({ balance: 0 });
+
+    // Act
+    await transferMoney({ from: sender.id, to: recipient.id, amount: 40 });
+
+    // Assert
+    expect(sender.balance).toBe(60);
+  });
+
+  it('should reject transfer with InsufficientFundsError when balance is too low', async () => {
+    // ...
+  });
+
+  it('should rollback transaction when recipient account is suspended', async () => {
+    // ...
+  });
+});
+```
+
+---
+
 ## Git Commit Standard (Conventional Commits 1.0.0)
 
 All commits in this repository must be **atomic**, **verified** (typecheck/tests pass), and formatted according to **Conventional Commits**:

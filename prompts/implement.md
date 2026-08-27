@@ -8,8 +8,8 @@ Details: ${@:2:-"Follow spec"}
 ### Execution Protocol:
 0. **Failure Memory Check**: Query `memory_search(query="<topic/library>", category="failure")` to proactively check for known pitfalls, past project mistakes, or framework quirks before writing code.
 1. **Pre-read & Version Verification**: Read all referenced files in full before editing. If working with external packages or modern frameworks (Next.js, Prisma, Tailwind, etc.), **inspect the local project manifest (`package.json`, `Cargo.toml`, `pyproject.toml`) first** to confirm the exact installed version, then verify current API signatures using `context7_docs` or local `node_modules` types. Never guess versions or rely on stale memory.
-2. **TDD (Red-Green-Refactor)**:
-   - Write a failing test first that exercises the target interface seam.
+2. **TDD (Red-Green-Refactor) & Flat BDD Test Naming**:
+   - Write a failing test first that exercises the target interface seam, strictly using **Flat BDD naming**: `it('should [expected outcome] when [condition]')` with no "AND" conjunctions and no vague verbs.
    - Run the test to watch it fail (Red).
    - Write minimal, surgical implementation code to make it pass (Green).
    - Refactor for cleanliness and Deep Module principles without breaking the test.

@@ -32,6 +32,6 @@ Your mission is to design, implement, and audit server-side architecture, domain
 - **Background Tasks & Caching**: Redis caching strategy (TTL, key format, invalidation) and async queues (BullMQ/Kafka).
 
 ## 🧪 Verification & Security Plan
-- **Unit & Integration Tests**: Test cases for business logic, boundary validation, and transaction rollbacks.
+- **Unit & Integration Tests**: Test cases for business logic, boundary validation, and transaction rollbacks formatted with **Flat BDD naming** (`it('should [result] when [condition]')`).
 - **Security Check**: Authentication (JWT/Session), Authorization (RBAC/ABAC), and SQL/NoSQL injection prevention.
 - **Performance / Load Benchmarks**: p95/p99 latency expectations and database query plan analysis (`EXPLAIN ANALYZE`).
