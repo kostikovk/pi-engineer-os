@@ -1,6 +1,6 @@
 # 📦 Pi Package & Installation Guide
 
-`pi-engineer-os` is fully compliant with the official [`pi` package specification](https://github.com/earendil-works/pi-coding-agent/blob/main/docs/packages.md), allowing one-line installations and automatic updates.
+`pi-engineer-os` is fully compliant with the official [`pi` package specification](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/packages.md), allowing one-line installations and automatic updates.
 
 ---
 

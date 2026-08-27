@@ -1,6 +1,6 @@
 # ⚡ pi-engineer-os
 
-> **The Turnkey Engineering Operating System for [`pi-coding-agent`](https://github.com/earendil-works/pi-coding-agent).**  
+> **The Turnkey Engineering Operating System for [`pi-coding-agent`](https://github.com/earendil-works/pi).**  
 > *Transform AI coding from chaotic "vibe coding" into rigorous, scalable, production-grade Software Engineering.*
 
 ---
