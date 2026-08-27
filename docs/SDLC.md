@@ -58,6 +58,11 @@ Never jump straight into coding complex features:
   - Evaluates trade-offs across domains (Backend, Frontend, Database, Security).
   - Presents clear proposals with pros/cons and a strong **Expert Recommendation**.
   - **Strict Human Decision Gate**: The agent never decides or writes code autonomously; it halts and waits for explicit user confirmation before recording decisions or generating specs.
+- **Domain Architecture RFCs & Subagent Consultation**:
+  - **Universal Systems Architecture (`architect` subagent)**: High-level topology, DDD Bounded Contexts, cross-service contracts.
+  - **Backend Architecture (`backend-architect` subagent)**: Distributed reliability (Outbox, Sagas), multi-tier caching (anti-stampede), rate limiting, and RFC 7807 error envelopes.
+  - **Frontend Architecture (`frontend-architect` subagent)**: SSR/RSC vs Client boundary placement, discrete state machines (XState), TanStack Query key factories, optimistic UI rollback, and design tokens.
+  - **Database Architecture (`db-architect` subagent)**: Lock-free schema design, query plans (`EXPLAIN ANALYZE`), and index tuning.
 - **Technical RFC (`/spec <feature>`)**:
   - Synthesizes product and technical requirements into a standardized RFC (`docs/specs/RFC-xxx.md`).
 - **ADR Baseline**:

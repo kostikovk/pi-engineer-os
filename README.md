@@ -111,22 +111,24 @@ pi-engineer-os/
 
 ## 🤖 Universal Parallel Subagents (`agents/`)
 
-`pi-engineer-os` includes 14 specialized, stack-agnostic subagents that run in **isolated sub-processes**. They operate without polluting your main conversation context and can run **in parallel**:
+`pi-engineer-os` includes 16 specialized, stack-agnostic subagents that run in **isolated sub-processes**. They operate without polluting your main conversation context and can run **in parallel**:
 
 | Subagent | Model | Purpose & Universal Capabilities |
 | :--- | :--- | :--- |
 | **`product-manager`** | `anthropic/claude-opus-5` | **Product & Requirements:** User journeys, PRDs, Given-When-Then Acceptance Criteria, and feature backlog prioritization. |
-| **`frontend`** | `anthropic/claude-sonnet-5` | **Frontend Architecture & UI/UX:** Responsive component trees, client state, a11y (WCAG 2.1 AA), design systems, and API contract integration. |
-| **`backend`** | `anthropic/claude-sonnet-5` | **Backend & Distributed Systems:** High-throughput APIs, domain business logic, data models, background workers, and resilient service boundaries. |
+| **`architect`** | `anthropic/claude-opus-5` | **Deep Systems Modeling:** Universal architecture, Ousterhout Deep Modules, Domain Ubiquitous Language, Design-It-Twice trade-off evaluation, and ADR creation. |
+| **`backend-architect`** | `anthropic/claude-opus-5` | **Backend & Distributed Systems Architecture:** Scalable API topologies, Outbox pattern, Saga workflows, multi-tier caching (anti-stampede), and rate limiting. |
+| **`frontend-architect`** | `anthropic/claude-opus-5` | **Frontend Architecture & Web Topology:** SSR/RSC vs Client boundary placement, client state machines (XState), TanStack Query key factories, optimistic UI rollback, and design tokens. |
+| **`db-architect`** | `anthropic/claude-opus-5` | **Database Engineering:** Relational/document schema design, zero-downtime migrations (*Expand & Contract*), and $N+1$ query optimization. |
+| **`backend`** | `anthropic/claude-sonnet-5` | **Backend Implementation:** High-throughput APIs, domain business logic, data models, background workers, and resilient service boundaries. |
+| **`frontend`** | `anthropic/claude-sonnet-5` | **Frontend Implementation:** Responsive component trees, client state, a11y (WCAG 2.1 AA), design systems, and API contract integration. |
 | **`scout`** | `google/gemini-3.7-flash` | **Codebase Recon:** Rapidly maps file trees, traces dependencies/imports, and extracts AST interface snapshots across any language. |
 | **`researcher`** | `google/gemini-3.7-flash` | **Live Docs & Specs:** Queries Context7 and live specs to verify modern API contracts, breaking changes, and migration paths without hallucinations. |
 | **`qa`** | `anthropic/claude-sonnet-5` | **Acceptance & E2E Testing:** Validates implementations against Acceptance Criteria (Given-When-Then), hunts adversarial edge cases, and drafts E2E tests. |
 | **`test-runner`** | `google/gemini-3.7-flash` | **Isolated Testing:** Executes test suites (`cargo test`, `pytest`, `bun test`, `vitest`, `go test`), filters terminal noise, and diagnoses assertion diffs. |
 | **`reviewer`** | `anthropic/claude-sonnet-5` | **Two-Axis Audit:** Strict review against 12 Fowler Code Smells, Deep Module boundaries, and spec fidelity. |
-| **`architect`** | `anthropic/claude-opus-5` | **Deep Systems Modeling:** Ousterhout Deep Modules, Domain Ubiquitous Language, Design-It-Twice trade-off evaluation, and ADR creation. |
 | **`security`** | `anthropic/claude-sonnet-5` | **DevSecOps & SAST:** OWASP Top 10 audits, secret leakage detection, AuthN/AuthZ flaw verification, and STRIDE threat modeling. |
 | **`diagnostician`** | `anthropic/claude-sonnet-5` | **Root-Cause Analysis:** 5-phase bug diagnosis, minimal reproducible examples (MREs), and binary search regressions (`git bisect`). |
-| **`db-architect`** | `anthropic/claude-opus-5` | **Database Engineering:** Relational/document schema design, zero-downtime migrations (*Expand & Contract*), and $N+1$ query optimization. |
 | **`devops`** | `google/gemini-3.7-flash` | **CI/CD & Containers:** Multi-stage non-root Dockerfiles, GitHub Actions workflow automation, and layer caching. |
 | **`tech-writer`** | `google/gemini-3.7-flash` | **Living Documentation:** OpenAPI 3.1 endpoint specs, interactive Mermaid.js architecture diagrams, and SDK guides. |
 
