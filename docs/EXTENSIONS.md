@@ -6,9 +6,9 @@
 
 ## 📦 Extension Inventory
 
-### 1. `safety-gate.ts` & `safety-guardrails.ts`
+### 1. `safety-gate.ts`
 - **Destructive Command Interception**: Blocks accidental `rm -rf /`, `git reset --hard`, `git push --force`, `drop database`, and `dd` commands with an explicit TUI confirmation modal.
-- **Path Protection**: Prevents overwriting `.env`, `.git/`, production credentials, or lockfiles.
+- **Path Protection**: Prevents unauthorized modifications to `.env`, `.git/`, and sensitive project secrets.
 
 ### 2. `token-gauge.ts`
 - **Real-Time Context Meter**: Displays live token consumption, saturation percentage, and color-coded status in the TUI footer:
@@ -37,7 +37,8 @@
   - `@{src/auth/jwt.ts}`
 
 ### 9. `custom-compaction.ts` & `trigger-compact.ts`
-- **Architecture-Preserving Compaction**: Summarizes sessions while strictly preserving ADRs, test decisions, file paths, and Ubiquitous Language terms.
+- **Task & Error-Preserving Compaction**: Replaces lossy generic summarization with an engineering state checkpoint that captures active objectives, in-flight subtasks, tool error diagnostics, working tree diffs, and an authoritative **Immediate Resume Directive**.
+- **Non-Disruptive Auto-Compaction**: Dynamically triggers only near context window limits (>=88%), never interrupting active tool error resolution mid-flight. Supports `/trigger-compact` on demand.
 
 ### 10. `context7-docs.ts` (`/docs`)
 - **Version-Accurate Live Docs**: Fetches real-time documentation for modern frameworks and libraries to eliminate training cutoff hallucinations.

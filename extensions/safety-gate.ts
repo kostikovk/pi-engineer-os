@@ -1,8 +1,8 @@
 /**
  * Safety Gate Extension for pi-engineer-os
  *
- * Intercepts dangerous bash commands and destructive session operations
- * to prevent accidental data loss, branch corruption, or unauthorized deletions.
+ * Intercepts dangerous bash commands, protected file writes, and destructive session operations
+ * to prevent accidental data loss, branch corruption, or unauthorized modifications.
  */
 
 import type { ExtensionAPI, SessionBeforeSwitchEvent, SessionMessageEntry } from "@earendil-works/pi-coding-agent";
@@ -17,32 +17,67 @@ const DANGEROUS_COMMAND_PATTERNS = [
 	{ pattern: /\bsudo\b/i, name: "Elevated superuser execution (sudo)" },
 ];
 
+const PROTECTED_PATH_PATTERNS = [
+	/^\.env(\..+)?$/,
+	/\/\.env(\..+)?$/,
+	/^\.git\//,
+	/\/\.git\//,
+	/^\.secrets\//,
+];
+
 export default function safetyGateExtension(pi: ExtensionAPI) {
-	// Intercept dangerous bash tool calls
+	// Intercept dangerous bash tool calls & protected file modifications
 	pi.on("tool_call", async (event, ctx) => {
-		if (event.toolName !== "bash") return undefined;
+		if (event.toolName === "bash") {
+			const command = (event.input?.command as string) || "";
+			const matched = DANGEROUS_COMMAND_PATTERNS.find((item) => item.pattern.test(command));
 
-		const command = (event.input?.command as string) || "";
-		const matched = DANGEROUS_COMMAND_PATTERNS.find((item) => item.pattern.test(command));
+			if (matched) {
+				if (!ctx.hasUI) {
+					return {
+						block: true,
+						reason: `SafetyGate blocked dangerous command in non-interactive mode: "${matched.name}". Command: ${command}`,
+					};
+				}
 
-		if (matched) {
-			if (!ctx.hasUI) {
-				return {
-					block: true,
-					reason: `SafetyGate blocked dangerous command in non-interactive mode: "${matched.name}". Command: ${command}`,
-				};
+				const promptMessage = `⚠️ [SafetyGate Alert]\nDetected: ${matched.name}\n\nCommand:\n  ${command}\n\nDo you want to authorize this execution?`;
+				const choice = await ctx.ui.select(promptMessage, ["Authorize & Run", "Block Execution"]);
+
+				if (choice !== "Authorize & Run") {
+					ctx.ui.notify(`Execution blocked: ${matched.name}`, "warning");
+					return {
+						block: true,
+						reason: `Execution blocked by user authorization gate: "${matched.name}".`,
+					};
+				}
 			}
+			return undefined;
+		}
 
-			const promptMessage = `⚠️ [SafetyGate Alert]\nDetected: ${matched.name}\n\nCommand:\n  ${command}\n\nDo you want to authorize this execution?`;
-			const choice = await ctx.ui.select(promptMessage, ["Authorize & Run", "Block Execution"]);
+		if (event.toolName === "write" || event.toolName === "edit") {
+			const filePath = (event.input?.path as string) || "";
+			const isProtected = PROTECTED_PATH_PATTERNS.some((pattern) => pattern.test(filePath));
 
-			if (choice !== "Authorize & Run") {
-				ctx.ui.notify(`Execution blocked: ${matched.name}`, "warning");
-				return {
-					block: true,
-					reason: `Execution blocked by user authorization gate: "${matched.name}".`,
-				};
+			if (isProtected) {
+				if (!ctx.hasUI) {
+					return {
+						block: true,
+						reason: `SafetyGate blocked write/edit to protected file in non-interactive mode: "${filePath}".`,
+					};
+				}
+
+				const promptMessage = `⚠️ [SafetyGate Alert]\nAttempted write/edit to protected file:\n  ${filePath}\n\nDo you want to authorize this modification?`;
+				const choice = await ctx.ui.select(promptMessage, ["Authorize Write", "Block Write"]);
+
+				if (choice !== "Authorize Write") {
+					ctx.ui.notify(`Write to protected path blocked: ${filePath}`, "warning");
+					return {
+						block: true,
+						reason: `Modification of "${filePath}" was blocked by user authorization gate.`,
+					};
+				}
 			}
+			return undefined;
 		}
 
 		return undefined;
