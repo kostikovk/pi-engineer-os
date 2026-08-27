@@ -38,12 +38,13 @@
 
 Before writing code in an unfamiliar repository:
 - Run `/bootstrap` to automatically analyze the architecture (Monolith, Monorepo, Microservices), language versions, test commands, and package managers.
+- **Manifest as Single Source of Truth**: Package and framework versions are **strictly read from filesystem manifests** (`package.json`, `pnpm-lock.yaml`, `Cargo.lock`, `pyproject.toml`, `go.mod`), never guessed, assumed, or fetched from stale persistent memory.
 - Generates `AGENTS.md` and `CONTEXT.md` tailored specifically to the project.
 - Dispatch `scout` subagent for deep AST dependency mapping:
   ```
   subagent(agent="scout", task="Map authentication middleware and user session dependencies")
   ```
-- Dispatch `researcher` subagent to check live upstream library APIs and breaking changes.
+- Dispatch `researcher` subagent to check live upstream library APIs and breaking changes against the exact installed versions.
 
 ---
 

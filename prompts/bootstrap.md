@@ -13,9 +13,10 @@ Examine the repository filesystem and configuration files to determine:
    - **Monorepo**: Look for `turbo.json`, `pnpm-workspace.yaml`, `nx.json`, `lerna.json`, `go.work`, or `workspaces` in `package.json`. Map out `apps/*` vs `packages/*`.
    - **Monolith**: Single root fullstack or backend/frontend repository.
    - **Microservices / Multirepo**: Multiple independent services with Dockerfile / proto / OpenAPI contracts.
-2. **Tech Stack & Tooling**:
+2. **Tech Stack & Tooling (Direct Manifest Inspection)**:
    - Package manager (`bun`, `pnpm`, `npm`, `yarn`, `cargo`, `go modules`).
-   - Core frameworks (Next.js, React, Node, FastAPI, Go, Rust, etc.).
+   - Read exact installed dependencies and versions directly from the manifests (`package.json`, `Cargo.toml`, `pyproject.toml`, `go.mod`, lockfiles) — never guess or assume versions.
+   - Core frameworks & runtimes (Next.js, React, Node, FastAPI, Go, Rust, etc.).
    - Database / ORM (Prisma, Drizzle, TypeORM, raw SQL, Mongo).
    - Test framework (Vitest, Jest, Playwright, Pytest, Go test).
    - Typechecking & linting commands (e.g. `tsc --noEmit`, `biome check`, `eslint`).

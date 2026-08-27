@@ -31,8 +31,9 @@ export default function context7Extension(pi: ExtensionAPI) {
 			"Fetch up-to-date, version-accurate documentation and code examples for any framework, library, or API via Context7. Use this before implementing features with external libraries to avoid using deprecated APIs or hallucinating signatures.",
 		promptSnippet: "Fetch real-time, version-specific library and framework documentation via Context7.",
 		promptGuidelines: [
-			"Always call context7_docs before implementing code with modern frameworks (Next.js, Prisma, Tailwind, React 19, Supabase, Stripe) to verify current API signatures.",
-			"Do not guess syntax for version-specific breaking changes — query Context7 first.",
+			"Always inspect the local project manifest (e.g. package.json, Cargo.toml, pyproject.toml) to obtain the exact installed version before calling context7_docs.",
+			"Never guess package versions or rely on memory — always use the real version installed in the project.",
+			"Do not guess syntax for version-specific breaking changes — query Context7 with the verified version first.",
 		],
 		parameters: CONTEXT7_PARAMS,
 		async execute(_toolCallId, params) {

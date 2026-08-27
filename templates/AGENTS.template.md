@@ -20,8 +20,10 @@ Welcome to the project. All AI agents working in this repository must strictly a
 - Keep edits localized. Do not reformat unrelated lines or change unrelated dependencies.
 - Sequence wide refactors using the **Expand-Contract** pattern.
 
-## 5. Modern Documentation & Zero Hallucinations
-- Before implementing code with external frameworks (Next.js, Prisma, React, Tailwind, Stripe, Supabase), use `context7_docs` or inspect local types in `node_modules/` to verify current method signatures.
+## 5. Live Manifest as Ground Truth & Zero Hallucinations
+- **Manifest is the Single Source of Truth**: Package and library versions MUST ALWAYS be inspected directly from the project's local manifest or lockfiles (`package.json`, `pnpm-lock.yaml`, `Cargo.lock`, `pyproject.toml`, `go.mod`).
+- **Never rely on memory or assumptions for versions**: Do not guess versions or read them from persistent memory. Codebases update dependencies frequently on disk.
+- **Version-Accurate Verification**: Before implementing code with external frameworks (Next.js, Prisma, React, Tailwind, Stripe, Supabase), read the installed version from the manifest first, then use `context7_docs` or inspect local types in `node_modules/` to verify current method signatures.
 - Never guess or use deprecated APIs from past versions.
 
 ## 6. Verification & Pre-Flight Checks
