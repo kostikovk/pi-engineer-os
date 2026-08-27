@@ -32,9 +32,15 @@ pi-engineer-os/
 ├── 🤖 agents/                  # Specialized Subagents (Parallel background execution)
 │   ├── scout.md                # Rapid codebase recon & AST dependency mapping
 │   ├── researcher.md           # Live Context7 docs & breaking changes verification
+│   ├── qa.md                   # Acceptance criteria, edge cases & adversarial E2E testing
 │   ├── test-runner.md          # Parallel test execution & flakiness diagnosis
-│   ├── reviewer.md             # 2-axis Fowler smells & security review (Sonnet)
-│   └── architect.md            # Deep module contracts & ADR trade-offs (Opus)
+│   ├── reviewer.md             # 2-axis Fowler smells & architectural review (Sonnet)
+│   ├── architect.md            # Deep module contracts & ADR trade-offs (Opus)
+│   ├── security.md             # DevSecOps, OWASP Top 10 & secret scanning (Sonnet)
+│   ├── diagnostician.md        # 5-phase root cause & binary search debugger (Sonnet)
+│   ├── db-architect.md         # Zero-downtime migrations & query optimizer (Opus)
+│   ├── devops.md               # Multi-stage Dockerfiles & CI/CD pipelines (Flash)
+│   └── tech-writer.md          # OpenAPI 3.1 & Mermaid architecture diagrams (Flash)
 ├── 🛡️ extensions/              # Context preservation, safety gates, and live docs
 │   ├── subagent/               # Subagent orchestration engine (single, parallel, chain)
 │   ├── handoff.ts              # Lossless SDLC context transfer (/handoff)
@@ -101,27 +107,33 @@ pi-engineer-os/
 
 ## 🤖 Universal Parallel Subagents (`agents/`)
 
-`pi-engineer-os` includes 5 universal, stack-agnostic subagents that run in **isolated sub-processes**. They operate without polluting your main conversation context and can run **in parallel**:
+`pi-engineer-os` includes 11 specialized, stack-agnostic subagents that run in **isolated sub-processes**. They operate without polluting your main conversation context and can run **in parallel**:
 
 | Subagent | Model | Purpose & Universal Capabilities |
 | :--- | :--- | :--- |
-| **`scout`** | `google/gemini-3.7-flash` | **Codebase Recon:** Rapidly maps file trees, traces dependencies/imports, and extracts AST interface snapshots across any language (Rust, Go, TS, Python, C++, Java). |
+| **`scout`** | `google/gemini-3.7-flash` | **Codebase Recon:** Rapidly maps file trees, traces dependencies/imports, and extracts AST interface snapshots across any language. |
 | **`researcher`** | `google/gemini-3.7-flash` | **Live Docs & Specs:** Queries Context7 and live specs to verify modern API contracts, breaking changes, and migration paths without hallucinations. |
+| **`qa`** | `anthropic/claude-sonnet-5` | **Acceptance & E2E Testing:** Validates implementations against Acceptance Criteria (Given-When-Then), hunts adversarial edge cases, and drafts E2E tests. |
 | **`test-runner`** | `google/gemini-3.7-flash` | **Isolated Testing:** Executes test suites (`cargo test`, `pytest`, `bun test`, `vitest`, `go test`), filters terminal noise, and diagnoses assertion diffs. |
-| **`reviewer`** | `anthropic/claude-sonnet-5` | **Two-Axis Audit:** Strict read-only review against 12 Fowler Code Smells, Deep Module boundaries, and OWASP security/regression vulnerabilities. |
+| **`reviewer`** | `anthropic/claude-sonnet-5` | **Two-Axis Audit:** Strict review against 12 Fowler Code Smells, Deep Module boundaries, and spec fidelity. |
 | **`architect`** | `anthropic/claude-opus-5` | **Deep Systems Modeling:** Ousterhout Deep Modules, Domain Ubiquitous Language, Design-It-Twice trade-off evaluation, and ADR creation. |
+| **`security`** | `anthropic/claude-sonnet-5` | **DevSecOps & SAST:** OWASP Top 10 audits, secret leakage detection, AuthN/AuthZ flaw verification, and STRIDE threat modeling. |
+| **`diagnostician`** | `anthropic/claude-sonnet-5` | **Root-Cause Analysis:** 5-phase bug diagnosis, minimal reproducible examples (MREs), and binary search regressions (`git bisect`). |
+| **`db-architect`** | `anthropic/claude-opus-5` | **Database Engineering:** Relational/document schema design, zero-downtime migrations (*Expand & Contract*), and $N+1$ query optimization. |
+| **`devops`** | `google/gemini-3.7-flash` | **CI/CD & Containers:** Multi-stage non-root Dockerfiles, GitHub Actions workflow automation, and layer caching. |
+| **`tech-writer`** | `google/gemini-3.7-flash` | **Living Documentation:** OpenAPI 3.1 endpoint specs, interactive Mermaid.js architecture diagrams, and SDK guides. |
 
 ### How to Trigger Subagents:
 
 ```markdown
 # 1. Single Background Task:
-"Use scout to inspect the payment gateway integration"
+"Use qa to verify that user registration handles unicode names and duplicate emails"
 
-# 2. Parallel Background Execution:
-"Run 2 scouts in parallel: one to analyze the database repository layer, one to trace the HTTP router"
+# 2. Parallel Background Swarm:
+"Run qa, security, and test-runner in parallel to verify the new payment checkout flow"
 
 # 3. Chained Workflow Pipeline:
-"Run subagent pipeline: scout -> architect -> reviewer"
+"Run subagent pipeline: scout -> architect -> implement -> qa -> reviewer"
 ```
 
 ---
