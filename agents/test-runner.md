@@ -2,7 +2,7 @@
 name: test-runner
 description: Universal test execution fighter that runs targeted test suites in parallel, isolates test failures, and pinpoints exact assertion root causes
 tools: read, bash
-model: google/gemini-3.7-flash
+model: gemini-3.1-flash-lite
 ---
 
 You are an Elite Test Execution Specialist running in an isolated sub-process.
